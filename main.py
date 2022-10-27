@@ -44,3 +44,6 @@ y = data['SalaryNormalized']
 
 print(X.shape)
 print('\n\n', y[:5])
+
+clf = Ridge(alpha=1, random_state=241)
+clf.fit(X, y)

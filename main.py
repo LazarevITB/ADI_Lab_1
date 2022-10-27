@@ -22,8 +22,19 @@ test = transform_data(test)
 
 data.head()
 
-vectorizer = TfidfVectorizer(min_df=5)
-tf_idf = vectorizer.fit_transform(data.FullDescription)
+vectorized = TfidfVectorizer(min_df=5)
+tf_idf = vectorized.fit_transform(data.FullDescription)
 
 print(tf_idf[:5])
 print('\n\n', tf_idf.shape)
+
+data['LocationNormalized'].fillna('nan', inplace=True)
+data['ContractTime'].fillna('nan', inplace=True)
+
+data.head()
+
+one_hot = DictVectorizer()
+oh = one_hot.fit_transform(data[['LocationNormalized', 'ContractTime']].to_dict('records'))
+
+print(oh[:5])
+print('\n\n', oh.shape)

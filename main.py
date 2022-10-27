@@ -47,3 +47,14 @@ print('\n\n', y[:5])
 
 clf = Ridge(alpha=1, random_state=241)
 clf.fit(X, y)
+
+tf_idf_test = vectorized.transform(test.FullDescription)
+oh_test = one_hot.transform(test[['LocationNormalized', 'ContractTime']].to_dict('records'))
+X_test = hstack([tf_idf_test, oh_test])
+
+res = clf.predict(X_test)
+print(res)
+
+f = open('submission.txt', 'w')
+f.write(str(res)[1:-1])
+f.close()

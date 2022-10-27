@@ -38,3 +38,9 @@ oh = one_hot.fit_transform(data[['LocationNormalized', 'ContractTime']].to_dict(
 
 print(oh[:5])
 print('\n\n', oh.shape)
+
+X = hstack([tf_idf, oh])
+y = data['SalaryNormalized']
+
+print(X.shape)
+print('\n\n', y[:5])
